@@ -26,6 +26,16 @@ namespace BingWallpaper
             Stretched
         }
 
+        private static string _saveDir = System.Environment.GetFolderPath(
+                                            System.Environment.SpecialFolder.MyPictures)
+                                        + "\\bing\\";
+
+        public static string SaveDir
+        {
+            get { return _saveDir; }
+            set { _saveDir = value; }
+        }
+
         public static String GetWallpaperUrl()
         {
             var url = "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
@@ -45,8 +55,12 @@ namespace BingWallpaper
             System.IO.Stream s = new System.Net.WebClient().OpenRead(uri.ToString());
 
             System.Drawing.Image img = System.Drawing.Image.FromStream(s);
-            string tempPath = Path.Combine(Path.GetTempPath(), "wallpaper.bmp");
-            img.Save(tempPath, System.Drawing.Imaging.ImageFormat.Bmp);
+            if (null != _saveDir && !Directory.Exists(_saveDir))
+                Directory.CreateDirectory(_saveDir);
+
+            string imgPath = Path.Combine(null == _saveDir ? Path.GetTempPath() : _saveDir
+                                    , DateTime.Now.ToString("yyyy-MM-dd") + ".bmp");
+            img.Save(imgPath, System.Drawing.Imaging.ImageFormat.Bmp);
 
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
             if (style == Style.Stretched)
@@ -54,14 +68,12 @@ namespace BingWallpaper
                 key.SetValue(@"WallpaperStyle", 2.ToString());
                 key.SetValue(@"TileWallpaper", 0.ToString());
             }
-
-            if (style == Style.Centered)
+            else if (style == Style.Centered)
             {
                 key.SetValue(@"WallpaperStyle", 1.ToString());
                 key.SetValue(@"TileWallpaper", 0.ToString());
             }
-
-            if (style == Style.Tiled)
+            else if (style == Style.Tiled)
             {
                 key.SetValue(@"WallpaperStyle", 1.ToString());
                 key.SetValue(@"TileWallpaper", 1.ToString());
@@ -69,7 +81,7 @@ namespace BingWallpaper
 
             SystemParametersInfo(SPI_SETDESKWALLPAPER,
                 0,
-                tempPath,
+                imgPath,
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
         }
     }
