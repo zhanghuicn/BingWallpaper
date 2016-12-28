@@ -1,0 +1,10 @@
+D:\Code\git\BingWallpaper\BingWallpaper\bin\Release\BingWallpaper.exe
+D:\Code\git\BingWallpaper\BingWallpaper\bin\Release\BingWallpaper.pdb
+D:\Code\git\BingWallpaper\BingWallpaper\bin\Release\System.Json.dll
+D:\Code\git\BingWallpaper\BingWallpaper\bin\Release\System.Json.xml
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.csprojResolveAssemblyReference.cache
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.WinForm.resources
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.Properties.Resources.resources
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.csproj.GenerateResource.Cache
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.exe
+D:\Code\git\BingWallpaper\BingWallpaper\obj\Release\BingWallpaper.pdb

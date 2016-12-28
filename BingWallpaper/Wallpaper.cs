@@ -1,10 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Json;
-using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -38,7 +35,7 @@ namespace BingWallpaper
             JsonObject jsonObj = jsonValue as JsonObject;
             String strURL = jsonObj["images"][0]["url"].ToString();
 
-            return strURL.Replace(@"\/", "/").Replace("\"", "");
+            return ("http://cn.bing.com" + strURL).Replace(@"\/", "/").Replace("\"", "");
         }
 
         public static void Set(String uri, Style style)
